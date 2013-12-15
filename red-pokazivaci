@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+struct tpetorke {
+       short ai,bi,ci,di,ei;
+       };
+
+struct pacijent {
+       char ime[20], pre[25];
+       int dan, mj, god;
+       char spol;
+       tpetorke pet;
+       };
+
+struct element {
+       pacijent el;
+       element *sljedeci;
+       };
+
+struct red {
+   element *front, *rear;
+       };
+
+void InitQ (red *Q) {
+     Q->front=new element;
+     Q->rear=Q->front;
+     Q->front->sljedeci->el;
+     }
+
+pacijent FrontQ(red *Q){
+return Q->front->sljedeci->el;
+}
+
+void EnQueueQ(pacijent e, red *Q){
+    element *novi=new element;
+    novi->el=e;
+    novi->sljedeci=NULL;
+    Q->rear->sljedeci=novi;
+    Q->rear=novi;
+}
+
+void DeQueueQ(red *Q){
+    element *brisi=Q->front;
+    Q->front=Q->front->sljedeci;
+    delete brisi;
+}
+
+bool IsEmptyQ(red *Q){
+    return Q->front==Q->rear;
+}
