@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+struct tpetorke {
+       short ai,bi,ci,di,ei;
+       };
+
+struct pacijent {
+       char ime[20], pre[25];
+       int dan, mj, god;
+       char spol;
+       tpetorke pet;
+       };
+
+struct red {
+       pacijent el[1000];
+       int front, rear;
+       };
+
+void InitQ(red *Q){
+    Q->front=0; Q->rear=99;
+}
+
+pacijent FrontQ(red *Q){
+    return Q->el[Q->front];
+}
+
+void EnQueueQ(pacijent e, red *Q){
+    if(Q->rear==99) {
+        Q->rear=0;
+        Q->el[Q->rear]=e;
+    }
+    else{
+        Q->rear++;
+        Q->el[Q->rear]=e;
+    }
+}
+
+void DeQueueQ(red *Q){
+    if(Q->front==99) Q->front=0;
+    else Q->front++;
+}
+
+bool IsEmptyQ(red *Q){
+    if(Q->rear+1==Q->front || (Q->rear==99 && Q->front==0)) return true;
+    else return false;
+}
+
